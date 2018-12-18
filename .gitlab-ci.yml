@@ -1,0 +1,15 @@
+test:2.7:
+    image: python:2.7
+    script:
+        - apt-get update && apt-get install -y libgdal-dev
+        - pip install gdal==2.1.0 --global-option=build_ext --global-option="-I/usr/include/gdal"
+        - pip install -r requirements.txt
+        - py.test Testing/ --doctest-modules -v --cov scripts --cov-report term
+        
+test:3:
+    image: python:3
+    script:
+        - apt-get update && apt-get install -y libgdal-dev
+        - pip install gdal==2.1.0 --global-option=build_ext --global-option="-I/usr/include/gdal"
+        - pip install -r requirements.txt
+        - py.test Testing/ --doctest-modules -v --cov scripts --cov-report term
